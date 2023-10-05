@@ -74,7 +74,8 @@
       </div>
 
       <div class="section mt-4">
-        <form action="/run_r_script" method="get"><input type="submit" value="Run Analysis" class="btn btn-primary"></input></form>
+        <form action="/run_r_script" method="get" class="d-inline-block"><input type="submit" value="Run Analysis" class="btn btn-primary "></input></form>
+        <form action="/show_result_access" method="get" class="d-inline-block"><input type="submit" value="{% if session['showResult'] %}Hide{% else %}Show{% endif %} Result" class="btn btn-{% if session['showResult'] %}danger{% else %}success{% endif %}"></input></form>
         <h1>Analysed Data</h1>
         {{ html_table | safe }}
       </div>

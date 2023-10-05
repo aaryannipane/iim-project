@@ -26,19 +26,36 @@
       <div
         class="d-flex flex-row justify-content-between align-items-center py-3"
       >
-        <h1>User Dashboard <span class="lead">({{ session['user']['username'] | safe }})</span></h1>
+        <h1>
+          User Dashboard
+          <span class="lead">({{ session['user']['username'] | safe }})</span>
+        </h1>
         <form action="/logout" method="post">
           <input type="submit" value="LOGOUT" class="btn btn-danger" />
         </form>
       </div>
-      <h2 class="text-center my-3 py-2 text-decoration-underline">Data Input Form</h2>
+      <div class="navbar">
+        <a href="/result" class="btn btn-primary">SHOW RESULT</a>
+      </div>
+      <h2 class="text-center my-3 py-2 text-decoration-underline">
+        Data Input Form
+      </h2>
       <div class="d-flex">
-        <form action="/save_media_allocation" method="post" class="flex-fill p-2">
+        <form
+          action="/save_media_allocation"
+          method="post"
+          class="flex-fill p-2"
+        >
           <h3 class="fw-normal">Media Allocation Form</h3>
           <p class="lead">(not collecting)</p>
           <div class="mb-3">
             <label for="product">Product:</label>
-            <select id="product" class="form-control form-select" name="product" required>
+            <select
+              id="product"
+              class="form-control form-select"
+              name="product"
+              required
+            >
               <option value="Baller" selected>Baller</option>
               <option value="Banness">Banness</option>
               <option value="Caster">Caster</option>
@@ -113,7 +130,11 @@
           </div>
         </form>
 
-        <form action="/save_decision_summary" method="post" class="flex-fill p-2">
+        <form
+          action="/save_decision_summary"
+          method="post"
+          class="flex-fill p-2"
+        >
           <h3 class="fw-normal">Decision Summary Form</h3>
           <div class="mb-3">
             <label for="company">Company:</label>
@@ -128,7 +149,12 @@
 
           <div class="mb-3">
             <label for="product">Product:</label>
-            <select id="product" class="form-control form-select" name="product" required>
+            <select
+              id="product"
+              class="form-control form-select"
+              name="product"
+              required
+            >
               <option value="Baller">Baller</option>
               <option value="Banness">Banness</option>
               <option value="Caster">Caster</option>
@@ -144,7 +170,12 @@
           </div>
           <div class="mb-3">
             <label for="research_project">Research Project:</label>
-            <select id="research_project" class="form-control form-select" name="research_project" required>
+            <select
+              id="research_project"
+              class="form-control form-select"
+              name="research_project"
+              required
+            >
               <option value="Rproj_3">Rproj_3</option>
               <option value="Rproj_4">Rproj_4</option>
               <option value="Rproj_5">Rproj_5</option>
@@ -161,7 +192,12 @@
 
           <div class="mb-3">
             <label for="market">Market:</label>
-            <select id="market" class="form-control form-select" name="market" required>
+            <select
+              id="market"
+              class="form-control form-select"
+              name="market"
+              required
+            >
               <option value="Devices">Devices</option>
             </select>
           </div>
@@ -241,7 +277,12 @@
 
           <div class="mb-3">
             <label for="product">Product:</label>
-            <select id="product" class="form-control form-select" name="product" required>
+            <select
+              id="product"
+              class="form-control form-select"
+              name="product"
+              required
+            >
               <option value="Baller">Baller</option>
               <option value="Banness">Banness</option>
               <option value="Caster">Caster</option>
@@ -368,8 +409,8 @@
         <input type="submit" value="Submit" />
       </form> -->
       </div>
-      <hr />
-      <form
+      <!-- <hr /> -->
+      <!-- <form
         action="/run_r_script"
         style="
           margin: 20px 0;
@@ -386,7 +427,7 @@
         <table>
           {{ table_html|safe }}
         </table>
-      </div>
+      </div> -->
     </div>
   </body>
 </html>

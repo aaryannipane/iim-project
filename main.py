@@ -230,6 +230,45 @@ def save_product_attribute():
         # For GET request, simply render the form template
         return render_template('index.html')
 
+
+@app.route('/result', methods=['GET'])
+def result():
+    # check if admin had runed the analysis
+    # if done then only show result to student
+    connection = sqlite3.connect("user.db")
+    cursor = connection.cursor()
+
+    cursor.execute("SELECT allowAccess FROM YEARTABLE WHERE id = 1")
+    allow_access = cursor.fetchall()[0][0]
+
+    if allow_access:
+        df = pd.read_excel("./calculated_tables_t.xlsx", sheet_name="c_Product Attribute Perceptions")
+        table_html = df.to_html(classes="table table-bordered table-striped table-hover mt-3", index=False)
+        return render_template('result.html', table_html=table_html)
+    else:
+        return render_template('result.html', message="no result")
+
+    return render_template('result.html')
+
+@app.route("/show_result_access", methods=['GET'])
+def show_result_access():
+    connection = sqlite3.connect("user.db")
+    cursor = connection.cursor()
+
+    cursor.execute("SELECT allowAccess FROM YEARTABLE WHERE id = 1")
+    allow_access = cursor.fetchall()[0][0]
+    if allow_access == 0:
+        allow_access = 1
+    else:
+        allow_access = 0
+        
+    cursor.execute("UPDATE YEARTABLE SET allowAccess = ? WHERE id = 1", (allow_access,))
+    connection.commit()
+    session['showResult'] = allow_access
+    print(f'--> {allow_access}')
+    return redirect("/admin")
+    
+
 @app.route('/run_r_script', methods=['GET'])
 def run_r_script():
     # subprocess.call(['python', 'product_attribute_perceptions.py'])
@@ -247,9 +286,9 @@ def run_r_script():
         cursor.execute("SELECT year FROM YEARTABLE WHERE id = 1")
         year = cursor.fetchall()[0][0]
 
-        # increment year
-        cursor.execute("UPDATE yearTable SET year = ? WHERE id = 1", (year+1,))
-        connection.commit()
+        # increment year TODO: don't upgrade year after every click on analysis of admin
+        # cursor.execute("UPDATE yearTable SET year = ? WHERE id = 1", (year+1,))
+        # connection.commit()
 
         # try:
         getAnalysis(year)
@@ -389,6 +428,14 @@ def admin_dashboard():
 
     # set users_table session
     session["users_table"] = users
+
+    connection = sqlite3.connect("user.db")
+    cursor = connection.cursor()
+
+    cursor.execute("SELECT allowAccess FROM YEARTABLE WHERE id = 1")
+    allow_access = cursor.fetchall()[0][0]
+    
+    session['showResult'] = allow_access
 
     return render_template("admin_dashboard.html")
 

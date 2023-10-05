@@ -1,0 +1,2 @@
+students enter data -> files updated -> admin run analysis -> student can view result 
+
