@@ -1,6 +1,9 @@
 import pandas as pd
 import scipy.stats as stats
 
+# calculated -> product 
+# c_product_attribute
+
 def getAnalysis(i):
     # Set the value of i to 1
 

@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, make_response, redirect, url_for, session
 from openpyxl import Workbook, load_workbook
 import pandas as pd
-import subprocess
 import sqlite3
 import uuid
 from product_attribute_perceptions import getAnalysis
@@ -124,7 +123,6 @@ def save_decision_summary():
 
         data = cursor.fetchall()
         year = str(data[0][0])
-        print(str(data[0][0]))
 
         
 
@@ -287,8 +285,8 @@ def run_r_script():
         year = cursor.fetchall()[0][0]
 
         # increment year TODO: don't upgrade year after every click on analysis of admin
-        # cursor.execute("UPDATE yearTable SET year = ? WHERE id = 1", (year+1,))
-        # connection.commit()
+        cursor.execute("UPDATE yearTable SET year = ? WHERE id = 1", (year+1,))
+        connection.commit()
 
         # try:
         getAnalysis(year)
@@ -344,7 +342,6 @@ def signup():
         
         # if not exist insert user in db
         unique_id = str(uuid.uuid4())
-        print(unique_id)
         cursor.execute("INSERT INTO USERS (id, username, password, userType) VALUES (?, ?, ?, ?)", (unique_id, user_name, user_password, user_type))
 
         connection.commit()
@@ -380,7 +377,7 @@ def signin():
         result = cursor.fetchall()
 
 
-        # if not exists then go to signup page
+        # if not exists then go to signin page
         if len(result) == 0:
             session['message'] = {'page':"signin",'type': "danger", 'message': "user does'nt exist"}
             return redirect("/signin")
@@ -408,7 +405,6 @@ def logout():
     if request.method == "POST":
         if not session.get("user"):
             return redirect("/signin")
-        print("clear")
         session.clear()
         return redirect("/signin")
 
