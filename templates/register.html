@@ -24,9 +24,11 @@
     <title>Register</title>
   </head>
   <body>
-    <div class="container">
+    <!-- <div class="container">
       {% if session.message and session.message.page == "signup" %}
-      <div class="alert alert-{{session.message.type}} mt-3" role="alert">{{session.message.message}}</div>
+      <div class="alert alert-{{session.message.type}} mt-3" role="alert">
+        {{session.message.message}}
+      </div>
       {% endif %}
       <h1 class="my-5">Create an account</h1>
       <form action="/signup" method="post">
@@ -51,23 +53,128 @@
           />
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="userType" value="student" id="flexRadioDefault1" checked>
+          <input
+            class="form-check-input"
+            type="radio"
+            name="userType"
+            value="student"
+            id="flexRadioDefault1"
+            checked
+          />
           <label class="form-check-label" for="flexRadioDefault1">
             student
           </label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="userType" value="admin" id="flexRadioDefault2">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="userType"
+            value="admin"
+            id="flexRadioDefault2"
+          />
           <label class="form-check-label" for="flexRadioDefault2">
             admin
           </label>
         </div>
-        <br>
+        <br />
         <div class="d-flex">
-          <button type="submit" class="btn btn-primary mt-3">Create User</button>
+          <button type="submit" class="btn btn-primary mt-3">
+            Create User
+          </button>
           <a href="/admin" class="btn btn-dark mt-3 ms-3">back</a>
         </div>
       </form>
-    </div>
+    </div> -->
+
+    <section class="vh-100 gradient-custom">
+      {% if session.message and session.message.page == "signup" %}
+      <div class="alert alert-{{session.message.type}} mt-3" role="alert">
+        {{session.message.message}}
+      </div>
+      {% endif %}
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card bg-dark text-white" style="border-radius: 1rem">
+              <div class="card-body p-5 text-center">
+                <div class="mb-md-5 mt-md-4 pb-5">
+                  <h2 class="fw-bold mb-2 text-uppercase mb-4">Create an account</h2>
+                 
+                  <form action="/signup" method="post">
+                    
+                  <div class="form-outline form-white mb-4 text-start">
+                    <label class="form-label" for="typeEmailX">Username</label>
+                    <input
+                      type="text"
+                      id="typeEmailX"
+                      name="username"
+                      class="form-control form-control-lg"
+                      required
+                    />
+                   
+                  </div>
+
+                  <div class="form-outline form-white mb-4 text-start">
+                    <label class="form-label" for="typePasswordX"
+                      >Password</label
+                    >
+                    <input
+                      type="password"
+                      id="typePasswordX"
+                      name="userpassword"
+                      class="form-control form-control-lg"
+                      required
+                    />
+                    
+                  </div>
+
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="userType"
+                      value="student"
+                      id="flexRadioDefault1"
+                      checked
+                    />
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      student
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="userType"
+                      value="admin"
+                      id="flexRadioDefault2"
+                    />
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      admin
+                    </label>
+                  </div>
+                  <br><br>
+                  <!-- <button
+                    class="btn btn-outline-light btn-lg px-5"
+                    type="submit"
+                  >
+                    Login
+                  </button> -->
+                  <div class="d-flex justify-content-around">
+                    <button type="submit" class="btn btn-outline-light btn-lg px-5">
+                      Create User
+                    </button>
+                    <a href="/admin" class="btn btn-outline-light btn-lg px-5">back</a>
+                  </div>
+                  
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
 </html>

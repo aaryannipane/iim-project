@@ -27,11 +27,14 @@
     {% if session['error'] %}
       <script>alert("{{ session['error'] }}")</script>
     {% endif %}
-    <div class="container">
-      <div class="d-flex flex-row justify-content-between align-items-center py-3 ">
+    <div class="bg-dark text-white">
+      <div class="d-flex flex-row justify-content-between align-items-center py-3 container">
         <h1>Admin Dashboard <span class="lead">({{ session['user']['username'] | safe }})</span> </h1>
         <form action="/logout" method="post"><input type="submit" value="LOGOUT" class="btn btn-danger"></input></form>
+
       </div>
+    </div>
+    <div class="container">
 
       <div class="d-flex justify-content-between w-25 py-3">
       <a href="/signup" class="btn btn-success ">Create new User</a>
@@ -61,7 +64,7 @@
           </tbody>
         </table>
       </div>
-
+      <hr>
       <div class="section mt-4">
         <h2>Get Data From Files</h2>
         <form action="/get/file" method="post">
@@ -72,7 +75,7 @@
 
         {{ session['file_table'] | safe }}
       </div>
-
+      <hr>
       <div class="section mt-4">
         <form action="/run_r_script" method="get" class="d-inline-block"><input type="submit" value="Run Analysis" class="btn btn-primary "></input></form>
         <form action="/show_result_access" method="get" class="d-inline-block"><input type="submit" value="{% if session['showResult'] %}Hide{% else %}Show{% endif %} Result" class="btn btn-{% if session['showResult'] %}danger{% else %}success{% endif %}"></input></form>

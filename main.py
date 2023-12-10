@@ -326,6 +326,7 @@ def signup():
         user_name = request.form.get("username")
         user_password = request.form.get("userpassword")
         user_type = request.form.get("userType")
+        print(user_name)
 
         # db connection
         connection = sqlite3.connect("user.db")

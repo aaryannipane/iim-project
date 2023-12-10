@@ -24,7 +24,7 @@
     <title>Register</title>
   </head>
   <body>
-    <div class="container">
+    <!-- <div class="container">
       {% if session.message and session.message.page == "signin" %}
       <div class="alert alert-{{session.message.type}} mt-3" role="alert">
         {{session.message.message}}
@@ -54,6 +54,60 @@
         </div>
         <button type="submit" class="btn btn-primary mt-3">Sign In</button>
       </form>
-    </div>
+    </div> -->
+
+    <section class="vh-100 gradient-custom">
+      <div class="container py-5">
+        <div class="row d-flex justify-content-center align-items-center">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card bg-dark text-white" style="border-radius: 1rem">
+              <div class="card-body p-5 text-center">
+                <div class="mb-md-5 mt-md-4 pb-5">
+                  <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                  <p class="text-white-50 mb-5">
+                    Please enter your username and password!
+                  </p>
+
+                  <form action="/signin" method="post">
+                    <div class="form-outline form-white mb-4 text-start">
+                      <label class="form-label" for="typeEmailX"
+                        >Username</label
+                      >
+                      <input
+                        type="text"
+                        id="typeEmailX"
+                        name="username"
+                        class="form-control form-control-lg"
+                        required
+                      />
+                    </div>
+
+                    <div class="form-outline form-white mb-4 text-start">
+                      <label class="form-label" for="typePasswordX"
+                        >Password</label
+                      >
+                      <input
+                        type="password"
+                        id="typePasswordX"
+                        name="userpassword"
+                        class="form-control form-control-lg"
+                        required
+                      />
+                    </div>
+
+                    <button
+                      class="btn btn-outline-light btn-lg px-5"
+                      type="submit"
+                    >
+                      Login
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
